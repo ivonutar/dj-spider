@@ -18,5 +18,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index)
+    path('', views.index),
+    path('add-target', views.add_target),
+    path('spider/', views.spider)
 ]
