@@ -11,6 +11,8 @@ djangorestframework = "*"
 Django = "*"
 bs4 = "*"
 drf-extensions = "*"
+mock = "*"
+responses = "*"
 
 [requires]
 python_version = "3.7"
