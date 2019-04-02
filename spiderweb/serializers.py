@@ -3,7 +3,8 @@ from .models import Target
 
 
 class TargetSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = Target
-        fields = ('url')
+        fields = ('url', 'target_url')
 
