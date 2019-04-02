@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+
+
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -15,7 +18,7 @@ def index(request):
     return HttpResponse(targets_list)
 
 
-def add_target(request):
+def target(request):
     if request.method == 'POST':
         form = TargetForm(request.POST)
         if form.is_valid():
@@ -29,12 +32,15 @@ def add_target(request):
     return render(request, 'target.html', {'form': form})
 
 
-def spider(request):
+def links(request):
 
     if request.method == 'POST':
         form = TargetForm(request.POST)
         target_url = form.data.get('url')
-        r = requests.get('{}'.format(target_url))
+        try:
+            r = requests.get('{}'.format(target_url))
+        except requests.exceptions.MissingSchema as ex:
+            return HttpResponse("Error: {}".format(ex))
         html = r.text
         soup = BeautifulSoup(html)
         links = list()

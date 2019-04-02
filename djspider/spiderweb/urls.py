@@ -14,11 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.urls import path
+from django.urls import path, include
 from . import views
+from .viewsets import TargetViewSet
+
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'targets', TargetViewSet)
+
 
 urlpatterns = [
-    path('', views.index),
-    path('add-target', views.add_target),
-    path('spider/', views.spider)
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
+
