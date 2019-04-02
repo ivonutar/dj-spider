@@ -10,6 +10,7 @@ requests = "*"
 djangorestframework = "*"
 Django = "*"
 bs4 = "*"
+drf-extensions = "*"
 
 [requires]
 python_version = "3.7"
