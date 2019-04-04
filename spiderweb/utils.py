@@ -13,9 +13,6 @@ def spider(starting_point_url, scope, depth=2):
     :param depth: depth of spidering.
     :return: set() of found links until depth is reached
     """
-    # Ignore out of scope URLs
-    if not in_scope(starting_point_url, scope):
-        return set()
 
     # If in scope, add source to result
     resulting_links = {starting_point_url}

@@ -15,11 +15,13 @@ class TargetViewSet(viewsets.ModelViewSet):
     def spider(self, request, **kwargs):
 
         target_id = kwargs.get('pk')
+        data = request.data
+        depth = data.get('depth', 0)
+
         target_obj = Target.objects.get(id=target_id)
         starting_point_url = target_obj.starting_point_url
         scope = target_obj.scope
 
-        links = list()
-        links.append(spider(starting_point_url, scope))
+        links = spider(starting_point_url, scope, depth)
 
         return Response({'paths': links})
