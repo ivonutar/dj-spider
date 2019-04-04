@@ -6,5 +6,5 @@ class TargetSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Target
-        fields = ('url', 'target_url')
+        fields = ('url', 'starting_point_url', 'scope')
 

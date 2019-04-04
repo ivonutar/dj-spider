@@ -4,4 +4,5 @@ from django.db import models
 
 
 class Target(models.Model):
-    target_url = models.CharField(max_length=200)
+    starting_point_url = models.CharField(max_length=200)
+    scope = models.CharField(max_length=200)

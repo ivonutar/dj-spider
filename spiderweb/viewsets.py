@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from .models import Target
 from . serializers import TargetSerializer
-from .utils import get_links
+from .utils import spider
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -15,9 +15,11 @@ class TargetViewSet(viewsets.ModelViewSet):
     def spider(self, request, **kwargs):
 
         target_id = kwargs.get('pk')
-        target_url = Target.objects.get(id=target_id).target_url
+        target_obj = Target.objects.get(id=target_id)
+        starting_point_url = target_obj.starting_point_url
+        scope = target_obj.scope
 
         links = list()
-        links.append(get_links(target_url))
+        links.append(spider(starting_point_url, scope))
 
         return Response({'paths': links})
